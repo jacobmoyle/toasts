@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import logo from './logo.png';
-import './App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import logo from "./logo.png";
+import "./App.css";
 
-import Home from './pages/Home'
-import LowerCase from './pages/LowerCase'
-import UpperCase from './pages/UpperCase'
+import Toast from "./containers/Toast";
+
+import Home from "./pages/Home";
+import LowerCase from "./pages/LowerCase";
+import UpperCase from "./pages/UpperCase";
 
 class App extends Component {
   render() {
@@ -13,7 +15,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <Link to="/"><img className="App-logo" alt="logo" src={logo} /></Link>
+            <Link to="/">
+              <img className="App-logo" alt="logo" src={logo} />
+            </Link>
           </header>
           <div className="App-content">
             <Switch>
@@ -21,6 +25,7 @@ class App extends Component {
               <Route path="/lowercase" component={LowerCase} />
               <Route path="/uppercase" component={UpperCase} />
             </Switch>
+            <Toast />
           </div>
         </div>
       </Router>
