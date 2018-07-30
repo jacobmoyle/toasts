@@ -1,21 +1,48 @@
 import React, { Component } from "react";
-// TODO: Utilize Proptypes?
-// import PropTypes from "prop-types";
 import "./Toast.css";
 
 export default class Toast extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      show: false
+    };
+  }
+
+  dismiss() {
+    this.setState({
+      show: false
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!!nextProps.toast.status) {
+      this.setState({
+        show: true
+      });
+    }
+  }
+
   render() {
-    const { toast, close } = this.props;
+    const { toast } = this.props;
+
+    let contentClass = "toast-content";
+
+    if (toast.status) {
+      contentClass += ` ${toast.status}`;
+    }
 
     return (
-      <div className="Toast-container">
-        {toast.status && (
-          <section>
-            {toast.status}
-            <button type="button" onClick={() => close()}>
-              X
-            </button>
-          </section>
+      <div className="toast-wrapper">
+        {this.state.show && (
+          <button
+            type="button"
+            className={contentClass}
+            onClick={() => this.dismiss()}
+          >
+            {toast.text.toUpperCase()}
+          </button>
         )}
       </div>
     );

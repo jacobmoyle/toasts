@@ -1,36 +1,27 @@
 const LOADING_TOAST = "LOADING_TOAST";
 const SUCCESS_TOAST = "SUCCESS_TOAST";
 const FAILURE_TOAST = "FAILURE_TOAST";
-const HIDE_TOAST = "HIDE_TOAST";
 
-// export const showToast = toast => ({
-//   type: LOADING_TOAST,
-//   text: toast.text
-// });
-
-// TODO: Use an Actionlistener?
-
-const initialState = {
-  status: null
-};
-
-export function hideToast() {
-  return {
-    type: HIDE_TOAST
-  };
+export function loadingToast(text = "loading") {
+  return { type: LOADING_TOAST, text };
 }
 
-// TODO: Break out status?
-export default function toast(state = initialState, action) {
+export function successToast(text = "success") {
+  return { type: SUCCESS_TOAST, text };
+}
+
+export function failureToast(text = "failure") {
+  return { type: FAILURE_TOAST, text };
+}
+
+export default function toast(state = { status: null, text: null }, action) {
   switch (action.type) {
     case LOADING_TOAST:
-      return { ...state, status: "loading" };
+      return { ...state, status: "loading", text: action.text };
     case SUCCESS_TOAST:
-      return { ...state, status: "success" };
+      return { ...state, status: "success", text: action.text };
     case FAILURE_TOAST:
-      return { ...state, status: "failure" };
-    case HIDE_TOAST:
-      return { ...state, status: null };
+      return { ...state, status: "failure", text: action.text };
     default:
       return state;
   }

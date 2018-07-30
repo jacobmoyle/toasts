@@ -1,9 +1,5 @@
 import axios from "axios";
-
-// TODO: BREAK THESE ACTIONS FROM FILE?
-const LOADING_TOAST = "LOADING_TOAST";
-const SUCCESS_TOAST = "SUCCESS_TOAST";
-const FAILURE_TOAST = "FAILURE_TOAST";
+import { loadingToast, successToast, failureToast } from "./toast";
 
 const TRANSFORM_VALUE_LOAD = "TRANSFORM_VALUE_LOAD";
 const TRANSFORM_VALUE_SUCCESS = "TRANSFORM_VALUE_SUCCESS";
@@ -20,16 +16,16 @@ const transformText = (input, mode = LOWERCASE) => dispatch => {
   const endpoint = mode === UPPERCASE ? UPPERCASE_ENDPOINT : LOWERCASE_ENDPOINT;
 
   dispatch({ type: TRANSFORM_VALUE_LOAD });
-  dispatch({ type: LOADING_TOAST });
+  dispatch(loadingToast(`loading ${mode}`));
   axios
     .post(endpoint, { input })
     .then(res => {
       dispatch({ type: TRANSFORM_VALUE_SUCCESS, payload: res.data });
-      dispatch({ type: SUCCESS_TOAST });
+      dispatch(successToast());
     })
     .catch(err => {
       dispatch({ type: TRANSFORM_VALUE_ERROR, payload: err });
-      dispatch({ type: FAILURE_TOAST });
+      dispatch(failureToast());
     });
 };
 
