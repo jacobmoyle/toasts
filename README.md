@@ -17,7 +17,7 @@ A solution for the [Toast Challenge](https://github.com/jacobmoyle/toasts#the-ch
 
 ### Setup
 
-1.  Clone the repo to your machine (`git clone https://github.com/jacobmoyle/notices.git`) and `cd notices`
+1.  Clone the repo to your machine (`git clone git@github.com:jacobmoyle/toasts.git`) and `cd notices`
 1.  Install dependencies using `yarn install` or `npm install`
 1.  Run API & client app concurrently using `yarn start`
 1.  The app should automatically open in a new browser window. If not, visit the app at `localhost:3000`.
